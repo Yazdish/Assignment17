@@ -1,57 +1,14 @@
 
 import math
+from functools import partial
 from PySide6.QtWidgets import QApplication
 from PySide6.QtUiTools import QUiLoader
 
-def zero ( ):
+def num (x):
     global number
-    number = number + "0" 
-    window.textbox.setText (number)
-
-def one ():
-    global number
-    number = number + "1"
-    window.textbox.setText (number)
-
-def two () :
-    global number
-    number = number + "2"
-    window.textbox.setText (number)
-
-def three () :
-    global number
-    number = number + "3"
-    window.textbox.setText (number)
-
-def four () :
-    global number
-    number = number + "4"
-    window.textbox.setText (number)
-
-def five () :
-    global number
-    number = number + "5"
-    window.textbox.setText (number)
-
-def six () :
-    global number
-    number = number + "6"
-    window.textbox.setText (number)
-
-def seven () :
-    global number
-    number = number + "7"
-    window.textbox.setText (number)
-
-def eight () :
-    global number 
-    number = number + "8"
-    window.textbox.setText (number)
-
-def nine () :
-    global number
-    number = number + "9"
-    window.textbox.setText (number)
+    old_number = window.textbox.text()
+    number = old_number + x
+    window.textbox.setText(number)
 
 def point () :
     global number
@@ -227,19 +184,18 @@ window = loader.load ("calculator.ui")
 number = ""
 operation = ""
 
-window.zero.clicked.connect (zero)
-window.one.clicked.connect (one)
-window.two.clicked.connect (two)
-window.three.clicked.connect (three)
-window.four.clicked.connect (four)
-window.five.clicked.connect (five)
-window.six.clicked.connect (six)
-window.seven.clicked.connect (seven)
-window.eight.clicked.connect (eight)
-window.nine.clicked.connect (nine)
-window.point.clicked.connect (point)
+window.btn_num_0.clicked.connect (partial(num,"0"))
+window.btn_num_1.clicked.connect (partial(num,"1"))
+window.btn_num_2.clicked.connect (partial(num,"2"))
+window.btn_num_3.clicked.connect (partial(num,"3"))
+window.btn_num_4.clicked.connect (partial(num,"4"))
+window.btn_num_5.clicked.connect (partial(num,"5"))
+window.btn_num_6.clicked.connect (partial(num,"6"))
+window.btn_num_7.clicked.connect (partial(num,"7"))
+window.btn_num_8.clicked.connect (partial(num,"8"))
+window.btn_num_9.clicked.connect (partial(num,"9"))
+window.point.clicked.connect (partial(num,"."))
 window.minus.clicked.connect (minus)
-
 window.equal.clicked.connect (equal)
 window.sum.clicked.connect (sum)
 window.sub.clicked.connect (sub)
@@ -252,7 +208,6 @@ window.sin.clicked.connect (sin)
 window.cos.clicked.connect (cos)
 window.tan.clicked.connect (tan)
 window.cot.clicked.connect (cot)
-
 window.ac.clicked.connect (ac)
 
 window.show ()
